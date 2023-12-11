@@ -1,0 +1,36 @@
+<% if (newBlog) { %>
+    <span style="color: green;" class="fade-out-text"><b>New blog added successfully</b></span>
+<% } %>
+
+<% if (updateBlog) { %>
+    <span style="color: green;" class="fade-out-text"><b>Blog updated successfully</b></span>
+<% } %>
+
+<% if (deleteBlog) { %>
+    <span style="color: red;" class="fade-out-text"><b>Blog Deleted successfully</b></span>
+<% } %>
+
+<!-- These messages need to be elliminated eventually
+-->
+
+<div class="admin-title">
+    <h2>Posts</h2>
+    <a href="/add-blogs" class="button">+Add New</a>
+</div>
+
+<ul class="admin-posts">
+    <% blogs.forEach(blog => { %> 
+        <li>
+            <a href="details/<%= blog._id %>">
+                <span><%= blog.title %></span>
+            </a>
+            <div class="admin-post-controls">
+                <a href="edit-blog/<%= blog._id %>" class="btn">Edit</a>
+
+                <form action="delete-blog/<%= blog._id %>?_method=DELETE" method="post">
+                    <input type="submit" value="Delete" class="btn">
+                </form>
+            </div>
+        </li>
+       <% }); %> 
+</ul>
